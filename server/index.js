@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive')
+const ctrl = require('./controller');
 
 const app = express();
 app.use(express.json())
@@ -13,5 +14,8 @@ massive(CONNECTION_STRING)
     console.log('db connected')
 })
 .catch(err => console.log(err))
+
+//endpoints
+app.get('/api/comments', ctrl.getComments)
 
 app.listen(SERVER_PORT, console.log(`${SERVER_PORT} is Haunted ☠️`));
